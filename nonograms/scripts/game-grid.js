@@ -1,6 +1,8 @@
 import { templates } from "./templates.js";
-const gridWidth = templates.Camel.width;
-const gridHeight = templates.Camel.height;
+import { currentTemplate } from "./sidebar.js";
+
+const gridWidth = templates[currentTemplate].width;
+const gridHeight = templates[currentTemplate].height;
 
 import { columnHints } from "./hints.js";
 import { rowHints } from "./hints.js";
