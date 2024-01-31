@@ -1,0 +1,78 @@
+.grid {
+  table-layout: fixed;
+  width: auto;
+  height: auto;
+  border-spacing: 0;
+}
+
+.top-cell {
+  border-right: 2px solid $color-grid-background;
+  vertical-align: bottom;
+  span {
+    width: 100%;
+    border-bottom: 2px solid $color-grid-background;
+    &:last-child {
+      border: 0;
+    }
+
+    @media screen and (max-width: 1000px) {
+      font-size: 12px;
+    }
+  }
+}
+
+.left-cell {
+  border-bottom: 2px solid $color-grid-background;
+  span {
+    border-right: 2px solid $color-grid-background;
+    padding: 5px;
+    &:last-child {
+      border: 0;
+    }
+
+    @media screen and (max-width: 1000px) {
+      font-size: 12px;
+      padding: 2px;
+    }
+  }
+}
+
+.top-cell__hints,
+.left-cell__hints {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.top-cell__hints {
+  flex-direction: column;
+}
+
+.main-cell {
+  background-color: $color-grid-background;
+  &[data-row="0"] {
+    border-top: 4px solid $color-border;
+  }
+  &[data-row="4"],
+  &[data-row="9"],
+  &[data-row="14"] {
+    border-bottom: 4px solid $color-border;
+  }
+
+  &[data-column="0"] {
+    border-left: 4px solid $color-border;
+  }
+  &[data-column="4"],
+  &[data-column="9"],
+  &[data-column="14"] {
+    border-right: 4px solid $color-border;
+  }
+}
+
+.main-cell__fill {
+  width: clamp(20px, 3vw, 35px);
+  height: clamp(20px, 3vw, 35px);
+  border-radius: 15%;
+  background-color: #fff;
+  cursor: pointer;
+}

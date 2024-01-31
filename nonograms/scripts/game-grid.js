@@ -67,12 +67,16 @@ for (let i = 0; i < gridHeight; i++) {
   // Create main cells
   for (let j = 0; j < gridWidth; j++) {
     const tdBody = document.createElement("td");
+    const tdBodyFill = document.createElement("div");
+
     tdBody.className = "main-cell";
+    tdBodyFill.className = "main-cell__fill";
 
     tdBody.setAttribute("data-index", cellInd++);
     tdBody.setAttribute("data-column", j);
     tdBody.setAttribute("data-row", i);
 
+    tdBody.appendChild(tdBodyFill);
     trBody.appendChild(tdBody);
   }
 
