@@ -1,3 +1,4 @@
+import { main } from "./script.js";
 import { templates } from "./templates.js";
 import { generateRowHints, generateColumnHints } from "./hints.js";
 import { createGrid } from "./game-grid.js";
@@ -22,7 +23,7 @@ export function createSidebar() {
   const sidebar = document.createElement("div");
   const features = document.createElement("ul");
 
-  sidebar.className = "sidebar-wrapper";
+  sidebar.className = "sidebar";
   features.className = "sidebar__features";
 
   // Levels
@@ -68,7 +69,7 @@ export function createSidebar() {
   levels.appendChild(sublist);
   features.appendChild(levels);
   sidebar.appendChild(features);
-  document.body.appendChild(sidebar);
+  main.appendChild(sidebar);
 }
 
 export function changeTemplate() {
@@ -77,7 +78,7 @@ export function changeTemplate() {
       oldTemplate = currentTemplate;
       currentTemplate = el.firstChild.textContent.replace(" ", "_");
       if (currentTemplate !== oldTemplate) {
-        const oldGrid = document.querySelector(".grid");
+        const oldGrid = document.querySelector(".grid-wrapper");
         oldGrid.remove();
         generateRowHints();
         generateColumnHints();

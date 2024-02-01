@@ -1,3 +1,4 @@
+import { main } from "./script.js";
 import { templates } from "./templates.js";
 import { currentTemplate } from "./sidebar.js";
 
@@ -8,13 +9,16 @@ export function createGrid() {
   const gridWidth = templates[currentTemplate].width;
   const gridHeight = templates[currentTemplate].height;
 
+  const gridWrap = document.createElement("div");
   const table = document.createElement("table");
+  gridWrap.className = "grid-wrapper";
   table.className = "grid";
 
   createTableHeader(gridWidth, table);
   createTableBody(gridWidth, gridHeight, table);
 
-  document.body.appendChild(table);
+  gridWrap.appendChild(table);
+  main.appendChild(gridWrap);
 }
 
 // Create table header
