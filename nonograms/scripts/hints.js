@@ -1,12 +1,12 @@
 import { templates } from "./templates.js";
-import { currentTemplate, oldTemplate } from "./sidebar.js";
+import { currentTemplate } from "./sidebar.js";
 
 export const rowHints = [];
 export const columnHints = [];
 
-const solution = templates[currentTemplate].solution;
-
-function generateRowHints() {
+export function generateRowHints() {
+  rowHints.length = 0;
+  const solution = templates[currentTemplate].solution;
   for (let i = 0; i < solution.length; i++) {
     const hint = [];
     let count = 0;
@@ -33,7 +33,9 @@ function generateRowHints() {
   }
 }
 
-function generateColumnHints() {
+export function generateColumnHints() {
+  columnHints.length = 0;
+  const solution = templates[currentTemplate].solution;
   for (let i = 0; i < solution.length; i++) {
     const hint = [];
     let count = 0;
@@ -59,6 +61,3 @@ function generateColumnHints() {
     columnHints.push(hint);
   }
 }
-
-generateRowHints();
-generateColumnHints();

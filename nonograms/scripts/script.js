@@ -1,6 +1,11 @@
-// import { templates } from "./templates.js";
-import { sidebar } from "./sidebar.js";
-import { table } from "./game-grid.js";
+import { createSidebar, currentTemplate, changeTemplate } from "./sidebar.js";
+import { createGrid } from "./game-grid.js";
+import { generateRowHints, generateColumnHints } from "./hints.js";
 
-document.body.appendChild(sidebar);
-document.body.appendChild(table);
+createSidebar();
+
+generateRowHints();
+generateColumnHints();
+createGrid();
+
+changeTemplate();
