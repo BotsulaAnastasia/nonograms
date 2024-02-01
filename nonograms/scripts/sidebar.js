@@ -1,5 +1,6 @@
 import { templates } from "./templates.js";
 import { generateRowHints, generateColumnHints } from "./hints.js";
+import { createGrid } from "./game-grid.js";
 
 // Group templates name by width
 const groupTemplatesByWidth = {};
@@ -75,12 +76,12 @@ export function changeTemplate() {
     el.addEventListener("click", () => {
       oldTemplate = currentTemplate;
       currentTemplate = el.firstChild.textContent.replace(" ", "_");
-      console.log(currentTemplate);
-      console.log(oldTemplate);
       if (currentTemplate !== oldTemplate) {
-        console.log("changed");
+        const oldGrid = document.querySelector(".grid");
+        oldGrid.remove();
         generateRowHints();
         generateColumnHints();
+        createGrid();
       }
     });
   });
