@@ -1,7 +1,5 @@
 import { main } from "./script.js";
 import { templates } from "./templates.js";
-import { generateRowHints, generateColumnHints } from "./hints.js";
-import { createGrid } from "./game-grid.js";
 
 // Group templates name by width
 const groupTemplatesByWidth = {};
@@ -15,9 +13,6 @@ for (let width = 5; width <= 15; width += 5) {
   }
   groupTemplatesByWidth[width] = names;
 }
-
-export let currentTemplate = "Camel";
-let oldTemplate = currentTemplate;
 
 export function createSidebar() {
   const sidebar = document.createElement("div");
@@ -70,20 +65,4 @@ export function createSidebar() {
   features.appendChild(levels);
   sidebar.appendChild(features);
   main.appendChild(sidebar);
-}
-
-export function changeTemplate() {
-  document.querySelectorAll(".level-name").forEach((el) => {
-    el.addEventListener("click", () => {
-      oldTemplate = currentTemplate;
-      currentTemplate = el.firstChild.textContent.replace(" ", "_");
-      if (currentTemplate !== oldTemplate) {
-        const oldGrid = document.querySelector(".grid-wrapper");
-        oldGrid.remove();
-        generateRowHints();
-        generateColumnHints();
-        createGrid();
-      }
-    });
-  });
 }

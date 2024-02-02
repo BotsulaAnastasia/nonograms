@@ -83,3 +83,14 @@
   background-color: #fff;
   cursor: pointer;
 }
+
+.--positive {
+  background-color: $color-border;
+}
+
+.--negative {
+  background-color: #fff;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-image: url(../assets/icons/cross.svg);
+}

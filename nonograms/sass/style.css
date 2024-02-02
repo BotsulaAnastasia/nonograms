@@ -89,6 +89,17 @@
   cursor: pointer;
 }
 
+.--positive {
+  background-color: rgba(67, 66, 85, 0.7568627451);
+}
+
+.--negative {
+  background-color: #fff;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-image: url(../assets/icons/cross.svg);
+}
+
 .sidebar {
   position: fixed;
   top: 0;

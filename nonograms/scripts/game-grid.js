@@ -1,6 +1,6 @@
 import { main } from "./script.js";
 import { templates } from "./templates.js";
-import { currentTemplate } from "./sidebar.js";
+import { currentTemplate } from "./grid-events.js";
 
 import { columnHints } from "./hints.js";
 import { rowHints } from "./hints.js";

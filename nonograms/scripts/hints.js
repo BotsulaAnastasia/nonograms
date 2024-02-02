@@ -1,5 +1,5 @@
 import { templates } from "./templates.js";
-import { currentTemplate } from "./sidebar.js";
+import { currentTemplate } from "./grid-events.js";
 
 export const rowHints = [];
 export const columnHints = [];
