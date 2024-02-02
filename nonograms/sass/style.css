@@ -6,6 +6,22 @@
   font-style: normal;
 }
 
+body {
+  background-image: url(../assets/images/samurai.png);
+  background-position: right;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: #f3d2ca;
+  min-height: 100vh;
+}
+@media screen and (max-width: 800px) {
+  body {
+    background-size: 50em;
+    background-position: center;
+  }
+}
+
 .grid-wrapper {
   display: flex;
   justify-content: center;
@@ -18,6 +34,17 @@
   width: auto;
   height: auto;
   border-spacing: 0;
+  margin-right: 400px;
+}
+@media screen and (max-width: 1000px) {
+  .grid {
+    margin-right: 270px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .grid {
+    margin-right: 0;
+  }
 }
 
 .top-cell {
@@ -28,14 +55,6 @@
   width: 100%;
   border-bottom: 2px solid rgba(191, 64, 64, 0.7882352941);
 }
-.top-cell span:last-child {
-  border: 0;
-}
-@media screen and (max-width: 1000px) {
-  .top-cell span {
-    font-size: 12px;
-  }
-}
 
 .left-cell {
   border-bottom: 2px solid rgba(191, 64, 64, 0.7882352941);
@@ -44,13 +63,28 @@
   border-right: 2px solid rgba(191, 64, 64, 0.7882352941);
   padding: 5px;
 }
+@media screen and (max-width: 1000px) {
+  .left-cell span {
+    padding: 2px;
+  }
+}
+
+.top-cell,
+.left-cell {
+  background-color: #f3d2ca;
+}
+.top-cell span,
+.left-cell span {
+  font-weight: bold;
+}
+.top-cell span:last-child,
 .left-cell span:last-child {
   border: 0;
 }
 @media screen and (max-width: 1000px) {
+  .top-cell span,
   .left-cell span {
     font-size: 12px;
-    padding: 2px;
   }
 }
 
@@ -82,8 +116,8 @@
 }
 
 .main-cell__fill {
-  width: clamp(20px, 3vw, 35px);
-  height: clamp(20px, 3vw, 35px);
+  width: clamp(20px, 3vw, 40px);
+  height: clamp(20px, 3vw, 40px);
   border-radius: 15%;
   background-color: #fff;
   cursor: pointer;

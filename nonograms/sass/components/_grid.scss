@@ -10,6 +10,13 @@
   width: auto;
   height: auto;
   border-spacing: 0;
+  margin-right: 400px;
+  @media screen and (max-width: 1000px) {
+    margin-right: 270px;
+  }
+  @media screen and (max-width: 800px) {
+    margin-right: 0;
+  }
 }
 
 .top-cell {
@@ -18,13 +25,6 @@
   span {
     width: 100%;
     border-bottom: 2px solid $color-grid-background;
-    &:last-child {
-      border: 0;
-    }
-
-    @media screen and (max-width: 1000px) {
-      font-size: 12px;
-    }
   }
 }
 
@@ -33,13 +33,23 @@
   span {
     border-right: 2px solid $color-grid-background;
     padding: 5px;
+
+    @media screen and (max-width: 1000px) {
+      padding: 2px;
+    }
+  }
+}
+
+.top-cell,
+.left-cell {
+  background-color: $color-background;
+  span {
+    font-weight: bold;
     &:last-child {
       border: 0;
     }
-
     @media screen and (max-width: 1000px) {
       font-size: 12px;
-      padding: 2px;
     }
   }
 }
@@ -77,8 +87,8 @@
 }
 
 .main-cell__fill {
-  width: clamp(20px, 3vw, 35px);
-  height: clamp(20px, 3vw, 35px);
+  width: clamp(20px, 3vw, 40px);
+  height: clamp(20px, 3vw, 40px);
   border-radius: 15%;
   background-color: #fff;
   cursor: pointer;
