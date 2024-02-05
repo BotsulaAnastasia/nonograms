@@ -87,3 +87,31 @@ export function resetGame() {
     }
   });
 }
+
+export function showSolution() {
+  const solutionBtn = document.querySelector(".btn-solution");
+  solutionBtn.addEventListener("click", () => {
+    const cells = document.querySelectorAll(".main-cell__fill");
+    const solution = templates[currentTemplate].solution.flat();
+    for (let i = 0; i < solution.length; i++) {
+      if (solution[i] === 0) {
+        cells[i].classList.add("--negative");
+      } else {
+        cells[i].classList.add("--positive");
+      }
+    }
+    /* cells.forEach((cell) => {
+      cell.removeEventListener("click", (event) => {
+        cell.classList.remove("--negative");
+        cell.classList.toggle("--positive");
+        fillUserSolution();
+      });
+      cell.removeEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        cell.classList.remove("--positive");
+        cell.classList.toggle("--negative");
+      });
+    }); */
+    resetTimer();
+  });
+}
