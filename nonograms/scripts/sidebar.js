@@ -22,6 +22,14 @@ export function createSidebar() {
   features.className = "sidebar__features";
 
   // Levels
+  createLevelsSection(features);
+  createButtonsSection(features);
+
+  sidebar.appendChild(features);
+  main.appendChild(sidebar);
+}
+
+function createLevelsSection(features) {
   const levels = document.createElement("li");
   const levelDetails = document.createElement("div");
   const levelTitle = document.createElement("span");
@@ -63,6 +71,23 @@ export function createSidebar() {
   levels.appendChild(levelDetails);
   levels.appendChild(sublist);
   features.appendChild(levels);
-  sidebar.appendChild(features);
-  main.appendChild(sidebar);
+}
+
+function createButtonsSection(features) {
+  const buttonNames = ["reset-game", "save-game", "random-game", "solution"];
+
+  for (let i = 0; i < buttonNames.length; i++) {
+    const button = document.createElement("li");
+    const buttonDetails = document.createElement("div");
+    const buttonTitle = document.createElement("span");
+
+    buttonDetails.className = `feat-details btn btn-${buttonNames[i]}`;
+    buttonTitle.className = "feat__name";
+
+    buttonTitle.innerText = `${buttonNames[i].replace("-", " ")}`;
+
+    buttonDetails.appendChild(buttonTitle);
+    button.appendChild(buttonDetails);
+    features.appendChild(button);
+  }
 }
