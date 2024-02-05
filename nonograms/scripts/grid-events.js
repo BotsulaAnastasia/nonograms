@@ -66,3 +66,19 @@ function gameOver(sol, userSol) {
     alert("You win!");
   }
 }
+
+export function resetGame() {
+  const resetBtn = document.querySelector(".btn-reset-game");
+  resetBtn.addEventListener("click", () => {
+    const canReset = confirm("Are you sure you want to reset the game?");
+    if (canReset) {
+      const cells = document.querySelectorAll(".main-cell__fill");
+      cells.forEach((cell) => {
+        cell.classList.remove("--negative");
+        cell.classList.remove("--positive");
+      });
+
+      userSolution.length = 0;
+    }
+  });
+}

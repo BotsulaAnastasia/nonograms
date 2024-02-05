@@ -1,7 +1,7 @@
 import { createSidebar } from "./sidebar.js";
 import { createGrid } from "./game-grid.js";
 import { generateRowHints, generateColumnHints } from "./hints.js";
-import { changeTemplate, fillCells } from "./grid-events.js";
+import { changeTemplate, fillCells, resetGame } from "./grid-events.js";
 
 export const main = document.createElement("main");
 main.className = "main";
@@ -16,3 +16,4 @@ createGrid();
 
 changeTemplate();
 fillCells();
+resetGame();
