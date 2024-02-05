@@ -5,6 +5,8 @@ import { currentTemplate } from "./grid-events.js";
 import { columnHints } from "./hints.js";
 import { rowHints } from "./hints.js";
 
+import { stopwatch } from "./stopwatch.js";
+
 export function createGrid() {
   const gridWidth = templates[currentTemplate].width;
   const gridHeight = templates[currentTemplate].height;
@@ -25,11 +27,12 @@ export function createGrid() {
 function createTableHeader(width, table) {
   const thead = document.createElement("thead");
   const trTop = document.createElement("tr");
-  const thEmpty = document.createElement("th");
+  const thStopwatch = document.createElement("th");
 
-  thEmpty.className = "empty-cell";
+  thStopwatch.className = "stopwatch-cell";
 
-  trTop.appendChild(thEmpty);
+  thStopwatch.appendChild(stopwatch);
+  trTop.appendChild(thStopwatch);
 
   // Fill table header
   for (let i = 0; i < width; i++) {

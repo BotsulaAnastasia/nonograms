@@ -1,6 +1,7 @@
 import { templates } from "./templates.js";
 import { generateRowHints, generateColumnHints } from "./hints.js";
 import { createGrid } from "./game-grid.js";
+import { resetTimer } from "./stopwatch.js";
 
 export let currentTemplate = "Camel";
 let oldTemplate = currentTemplate;
@@ -20,6 +21,7 @@ export function changeTemplate() {
         generateColumnHints();
         createGrid();
         fillCells();
+        resetTimer();
       }
     });
   });
@@ -79,6 +81,7 @@ export function resetGame() {
       });
 
       userSolution.length = 0;
+      resetTimer();
     }
   });
 }

@@ -26,6 +26,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100vh;
 }
 
@@ -45,6 +46,15 @@ body {
   .grid {
     margin-right: 0;
   }
+}
+
+.stopwatch-cell {
+  background-color: #f3d2ca;
+}
+.stopwatch-cell .stopwatch {
+  font-weight: bold;
+  width: 45px;
+  margin: auto;
 }
 
 .top-cell {
