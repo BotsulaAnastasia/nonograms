@@ -197,4 +197,74 @@ body {
 .btn {
   margin: 20px 0;
   cursor: pointer;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(138, 134, 132, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  display: none;
+  width: clamp(500px, 60%, 700px);
+  padding: 16px;
+  margin: 20px;
+  border-radius: 20px;
+  background: #e1d4c9;
+  color: #323145;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-text {
+  text-align: center;
+  font-size: 2em;
+}
+.modal-text span {
+  font-weight: bold;
+}
+
+.modal-btn {
+  display: flex;
+  width: 200px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 0;
+  background: none;
+  border: 1px solid #665f55;
+  margin: 20px 0 10px;
+  transition: all 0.3s ease-out;
+}
+
+.modal-btn__text {
+  font-size: 1.7em;
+  font-weight: 600;
+  color: #323145;
+}
+
+@media (hover: hover) {
+  .modal-btn:hover {
+    background-color: rgba(191, 64, 64, 0.7882352941);
+  }
+  .modal-btn:hover .modal-btn__text {
+    color: #fff;
+  }
+}
+.--active {
+  display: flex;
 }/*# sourceMappingURL=style.css.map */

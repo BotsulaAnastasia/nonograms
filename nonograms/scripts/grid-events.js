@@ -1,7 +1,8 @@
 import { templates } from "./templates.js";
 import { generateRowHints, generateColumnHints } from "./hints.js";
 import { createGrid } from "./game-grid.js";
-import { resetTimer } from "./stopwatch.js";
+import { resetTimer, pauseTimer } from "./stopwatch.js";
+import { openModal } from "./modal-windows.js";
 
 export let currentTemplate = "Camel";
 let oldTemplate = currentTemplate;
@@ -65,7 +66,8 @@ function fillUserSolution() {
 
 function gameOver(sol, userSol) {
   if (sol.toString() === userSol.toString()) {
-    alert("You win!");
+    pauseTimer();
+    openModal();
   }
 }
 

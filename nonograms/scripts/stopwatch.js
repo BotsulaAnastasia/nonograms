@@ -1,3 +1,5 @@
+import { modalText } from "./modal-windows.js";
+
 export const stopwatch = document.createElement("div");
 stopwatch.className = "stopwatch";
 stopwatch.textContent = "00:00";
@@ -30,6 +32,11 @@ function start() {
   cells.forEach((cell) => {
     cell.removeEventListener("mousedown", start);
   });
+}
+
+export function pauseTimer() {
+  clearInterval(interval);
+  modalText.innerHTML = `Great! You have solved the nonogram! Your total time is <span>${stopwatch.textContent}</span>`;
 }
 
 export function resetTimer() {
