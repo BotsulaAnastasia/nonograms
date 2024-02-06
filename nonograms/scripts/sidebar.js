@@ -21,9 +21,9 @@ export function createSidebar() {
   sidebar.className = "sidebar";
   features.className = "sidebar__features";
 
-  // Levels
   createLevelsSection(features);
   createButtonsSection(features);
+  createBurger(sidebar);
 
   sidebar.appendChild(features);
   main.appendChild(sidebar);
@@ -90,4 +90,51 @@ function createButtonsSection(features) {
     button.appendChild(buttonDetails);
     features.appendChild(button);
   }
+}
+
+function createBurger(sidebar) {
+  const burgerWrap = document.createElement("div");
+  const burger = document.createElement("span");
+  const burgerLine = document.createElement("span");
+
+  burgerWrap.className = "burger-wrapper";
+  burger.className = "burger";
+  burgerLine.className = "burger-line";
+
+  burger.appendChild(burgerLine);
+  burgerWrap.appendChild(burger);
+  sidebar.appendChild(burgerWrap);
+
+  openBurger(burger);
+}
+
+function openBurger(burger) {
+  burger.addEventListener("click", () => {
+    const sidebar = document.querySelector(".sidebar");
+    const sidebarFeat = document.querySelector(".sidebar__features");
+    sidebar.classList.toggle("--open-sidebar");
+    sidebarFeat.classList.toggle("--open-sidebar__features");
+    burger.classList.toggle("--open-burger");
+
+    closeBurger(burger);
+  });
+}
+
+function closeBurger(burger) {
+  const sidebar = document.querySelector(".sidebar");
+  const sidebarFeat = document.querySelector(".sidebar__features");
+  document.querySelectorAll(".level-name").forEach((el) => {
+    el.firstChild.addEventListener("click", () => {
+      sidebar.classList.remove("--open-sidebar");
+      sidebarFeat.classList.remove("--open-sidebar__features");
+      burger.classList.remove("--open-burger");
+    });
+  });
+  document.querySelectorAll(".feat__name").forEach((el) => {
+    el.addEventListener("click", () => {
+      sidebar.classList.remove("--open-sidebar");
+      sidebarFeat.classList.remove("--open-sidebar__features");
+      burger.classList.remove("--open-burger");
+    });
+  });
 }

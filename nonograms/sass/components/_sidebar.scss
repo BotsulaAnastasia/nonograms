@@ -7,23 +7,44 @@
   background-color: #1d1b31f0;
   color: #fff;
   text-align: center;
+  @extend %transition;
+  @media screen and (max-width: 1670px) {
+    width: 78px;
+  }
+  @media screen and (max-width: 1300px) {
+    width: 30px;
+  }
+}
+
+.--open-sidebar {
+  width: 260px;
 }
 
 .sidebar__features {
   display: inline-block;
   width: 100%;
   height: 100%;
-  padding: 30px 0;
+  padding: 10px 0 30px;
   overflow: auto;
   li {
     position: relative;
     list-style: none;
+    .btn-solution {
+      margin-bottom: 50px;
+    }
   }
+  @media screen and (max-width: 1670px) {
+    width: 0;
+  }
+}
+
+.--open-sidebar__features {
+  width: 100%;
 }
 
 .feat__name {
   text-transform: capitalize;
-  font-size: 40px;
+  font-size: 35px;
   font-weight: 400;
 }
 

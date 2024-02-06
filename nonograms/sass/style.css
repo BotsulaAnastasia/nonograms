@@ -1,3 +1,7 @@
+.sidebar, .burger-line, .burger:after, .burger:before {
+  transition: all 0.3s ease-out;
+}
+
 * {
   margin: 0;
   box-sizing: border-box;
@@ -7,6 +11,9 @@
 }
 
 body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-image: url(../assets/images/samurai.png);
   background-position: right;
   background-size: 50%;
@@ -22,12 +29,71 @@ body {
   }
 }
 
+.burger-line, .burger:after, .burger:before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  background: #fff;
+  width: 100%;
+  height: 2px;
+}
+
+.burger-wrapper {
+  display: none;
+}
+@media screen and (max-width: 1670px) {
+  .burger-wrapper {
+    display: block;
+  }
+}
+
+.burger {
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 23px;
+  margin: 20px;
+}
+.burger:before {
+  top: 0;
+  right: 0;
+}
+.burger:after {
+  bottom: 0;
+  right: 0;
+}
+@media (hover: hover) {
+  .burger {
+    cursor: pointer;
+  }
+}
+@media screen and (max-width: 1670px) {
+  .burger {
+    width: 30px;
+    margin: 20px 6px;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .burger {
+    width: 15px;
+  }
+}
+
+.--open-burger {
+  width: 40px;
+}
+
+.burger-line {
+  top: calc(50% - 1px);
+  right: 0;
+  transform: scale(1);
+}
+
 .grid-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
 }
 
 .grid {
@@ -35,9 +101,11 @@ body {
   width: auto;
   height: auto;
   border-spacing: 0;
+  margin-top: 30px;
+  margin-bottom: 30px;
   margin-right: 400px;
 }
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1130px) {
   .grid {
     margin-right: 270px;
   }
@@ -154,22 +222,48 @@ body {
   color: #fff;
   text-align: center;
 }
+@media screen and (max-width: 1670px) {
+  .sidebar {
+    width: 78px;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .sidebar {
+    width: 30px;
+  }
+}
+
+.--open-sidebar {
+  width: 260px;
+}
 
 .sidebar__features {
   display: inline-block;
   width: 100%;
   height: 100%;
-  padding: 30px 0;
+  padding: 10px 0 30px;
   overflow: auto;
 }
 .sidebar__features li {
   position: relative;
   list-style: none;
 }
+.sidebar__features li .btn-solution {
+  margin-bottom: 50px;
+}
+@media screen and (max-width: 1670px) {
+  .sidebar__features {
+    width: 0;
+  }
+}
+
+.--open-sidebar__features {
+  width: 100%;
+}
 
 .feat__name {
   text-transform: capitalize;
-  font-size: 40px;
+  font-size: 35px;
   font-weight: 400;
 }
 

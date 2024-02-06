@@ -11,7 +11,7 @@ let userSolution = [];
 
 export function changeTemplate() {
   document.querySelectorAll(".level-name").forEach((el) => {
-    el.addEventListener("click", () => {
+    el.firstChild.addEventListener("click", () => {
       oldTemplate = currentTemplate;
       currentTemplate = el.firstChild.textContent.replace(" ", "_");
       if (currentTemplate !== oldTemplate) {
