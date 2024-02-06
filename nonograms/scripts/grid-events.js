@@ -36,6 +36,7 @@ export function fillCells() {
   const cells = document.querySelectorAll(".main-cell__fill");
   cells.forEach((cell) => {
     cell.addEventListener("click", fillCellsClick);
+
     cell.addEventListener("contextmenu", (event) => {
       event.preventDefault();
     });
@@ -44,14 +45,41 @@ export function fillCells() {
 }
 
 function fillCellsClick() {
-  this.classList.remove("--negative");
-  this.classList.toggle("--positive");
+  if (this.classList.contains("--positive")) {
+    this.classList.remove("--positive");
+    clearCellSound();
+  } else {
+    this.classList.remove("--negative");
+    this.classList.add("--positive");
+    paintBlackSound();
+  }
   fillUserSolution();
 }
 
 function fillCellsContextMenu() {
-  this.classList.remove("--positive");
-  this.classList.toggle("--negative");
+  if (this.classList.contains("--negative")) {
+    this.classList.remove("--negative");
+    clearCellSound();
+  } else {
+    this.classList.remove("--positive");
+    this.classList.toggle("--negative");
+    crossOutSound();
+  }
+}
+
+function paintBlackSound() {
+  const soundOfPaintCell = new Audio("./assets/sounds/paint-black.mp3");
+  soundOfPaintCell.play();
+}
+
+function crossOutSound() {
+  const soundOfCrossOut = new Audio("./assets/sounds/cross-out.mp3");
+  soundOfCrossOut.play();
+}
+
+function clearCellSound() {
+  const soundOfClearCell = new Audio("./assets/sounds/clear-cell.mp3");
+  soundOfClearCell.play();
 }
 
 function fillUserSolution() {
@@ -74,12 +102,19 @@ function fillUserSolution() {
   gameOver(solution, userSolution);
 }
 
+// Win game
 function gameOver(sol, userSol) {
   if (sol.toString() === userSol.toString()) {
+    gameOverSound();
     pauseTimer();
     showSolutionFunc();
     openModal();
   }
+}
+
+function gameOverSound() {
+  const soundOfWinGame = new Audio("./assets/sounds/game-over.mp3");
+  soundOfWinGame.play();
 }
 
 export function resetGame() {
