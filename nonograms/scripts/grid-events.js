@@ -16,16 +16,20 @@ export function changeTemplate() {
       currentTemplate = el.firstChild.textContent.replace(" ", "_");
       if (currentTemplate !== oldTemplate) {
         userSolution.length = 0;
-        const oldGrid = document.querySelector(".grid-wrapper");
-        oldGrid.remove();
-        generateRowHints();
-        generateColumnHints();
-        createGrid();
-        fillCells();
-        resetTimer();
+        newGame();
       }
     });
   });
+}
+
+function newGame() {
+  const oldGrid = document.querySelector(".grid-wrapper");
+  oldGrid.remove();
+  generateRowHints();
+  generateColumnHints();
+  createGrid();
+  fillCells();
+  resetTimer();
 }
 
 export function fillCells() {
@@ -127,5 +131,22 @@ function removeCellsEventListeners() {
   cells.forEach((cell) => {
     cell.removeEventListener("click", fillCellsClick);
     cell.removeEventListener("contextmenu", fillCellsContextMenu);
+  });
+}
+
+function getRandomTemplate() {
+  const templateNames = Object.keys(templates);
+  const max = templateNames.length - 1;
+  const min = 0;
+  const randomInd = Math.floor(Math.random() * (max - min + 1)) + min;
+  currentTemplate = templateNames[randomInd];
+  console.log(currentTemplate);
+}
+
+export function randomGame() {
+  const randomGameBtn = document.querySelector(".btn-random-game");
+  randomGameBtn.addEventListener("click", () => {
+    getRandomTemplate();
+    newGame();
   });
 }

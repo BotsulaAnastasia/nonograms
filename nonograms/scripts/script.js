@@ -6,6 +6,7 @@ import {
   fillCells,
   resetGame,
   showSolution,
+  randomGame,
 } from "./grid-events.js";
 import { startTimer } from "./stopwatch.js";
 import { overlayGameOver } from "./modal-windows.js";
@@ -27,3 +28,4 @@ fillCells();
 resetGame();
 startTimer();
 showSolution();
+randomGame();
