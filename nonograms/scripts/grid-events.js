@@ -1,7 +1,7 @@
 import { templates } from "./templates.js";
 import { generateRowHints, generateColumnHints } from "./hints.js";
 import { createGrid } from "./game-grid.js";
-import { resetTimer, pauseTimer } from "./stopwatch.js";
+import { resetTimer, pauseTimer, stopTimer } from "./stopwatch.js";
 import { openModal } from "./modal-windows.js";
 
 export let currentTemplate = "Camel";
@@ -31,17 +31,23 @@ export function changeTemplate() {
 export function fillCells() {
   const cells = document.querySelectorAll(".main-cell__fill");
   cells.forEach((cell) => {
-    cell.addEventListener("click", (event) => {
-      cell.classList.remove("--negative");
-      cell.classList.toggle("--positive");
-      fillUserSolution();
-    });
+    cell.addEventListener("click", fillCellsClick);
     cell.addEventListener("contextmenu", (event) => {
       event.preventDefault();
-      cell.classList.remove("--positive");
-      cell.classList.toggle("--negative");
     });
+    cell.addEventListener("contextmenu", fillCellsContextMenu);
   });
+}
+
+function fillCellsClick() {
+  this.classList.remove("--negative");
+  this.classList.toggle("--positive");
+  fillUserSolution();
+}
+
+function fillCellsContextMenu() {
+  this.classList.remove("--positive");
+  this.classList.toggle("--negative");
 }
 
 function fillUserSolution() {
@@ -67,6 +73,7 @@ function fillUserSolution() {
 function gameOver(sol, userSol) {
   if (sol.toString() === userSol.toString()) {
     pauseTimer();
+    showSolutionFunc();
     openModal();
   }
 }
@@ -76,42 +83,49 @@ export function resetGame() {
   resetBtn.addEventListener("click", () => {
     const canReset = confirm("Are you sure you want to reset the game?");
     if (canReset) {
-      const cells = document.querySelectorAll(".main-cell__fill");
-      cells.forEach((cell) => {
-        cell.classList.remove("--negative");
-        cell.classList.remove("--positive");
-      });
-
+      clearCells();
       userSolution.length = 0;
       resetTimer();
+      fillCells();
     }
+  });
+}
+
+function clearCells() {
+  const cells = document.querySelectorAll(".main-cell__fill");
+  cells.forEach((cell) => {
+    cell.classList.remove("--negative");
+    cell.classList.remove("--positive");
   });
 }
 
 export function showSolution() {
   const solutionBtn = document.querySelector(".btn-solution");
   solutionBtn.addEventListener("click", () => {
-    const cells = document.querySelectorAll(".main-cell__fill");
-    const solution = templates[currentTemplate].solution.flat();
-    for (let i = 0; i < solution.length; i++) {
-      if (solution[i] === 0) {
-        cells[i].classList.add("--negative");
-      } else {
-        cells[i].classList.add("--positive");
-      }
-    }
-    /* cells.forEach((cell) => {
-      cell.removeEventListener("click", (event) => {
-        cell.classList.remove("--negative");
-        cell.classList.toggle("--positive");
-        fillUserSolution();
-      });
-      cell.removeEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        cell.classList.remove("--positive");
-        cell.classList.toggle("--negative");
-      });
-    }); */
     resetTimer();
+    showSolutionFunc();
+  });
+}
+
+function showSolutionFunc() {
+  clearCells();
+  const cells = document.querySelectorAll(".main-cell__fill");
+  const solution = templates[currentTemplate].solution.flat();
+  for (let i = 0; i < solution.length; i++) {
+    if (solution[i] === 0) {
+      cells[i].classList.add("--negative");
+    } else {
+      cells[i].classList.add("--positive");
+    }
+  }
+  stopTimer();
+  removeCellsEventListeners();
+}
+
+function removeCellsEventListeners() {
+  const cells = document.querySelectorAll(".main-cell__fill");
+  cells.forEach((cell) => {
+    cell.removeEventListener("click", fillCellsClick);
+    cell.removeEventListener("contextmenu", fillCellsContextMenu);
   });
 }

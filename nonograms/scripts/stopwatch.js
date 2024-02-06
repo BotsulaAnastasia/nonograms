@@ -34,6 +34,13 @@ function start() {
   });
 }
 
+export function stopTimer() {
+  const cells = document.querySelectorAll(".main-cell__fill");
+  cells.forEach((cell) => {
+    cell.removeEventListener("mousedown", start);
+  });
+}
+
 export function pauseTimer() {
   clearInterval(interval);
   modalText.innerHTML = `Great! You have solved the nonogram! Your total time is <span>${stopwatch.textContent}</span>`;
