@@ -22,6 +22,7 @@ main.className = "main";
 document.body.appendChild(main);
 document.body.appendChild(overlayGameOver);
 document.body.appendChild(overlayScoreTable);
+document.body.classList.add("--light");
 
 createSidebar();
 

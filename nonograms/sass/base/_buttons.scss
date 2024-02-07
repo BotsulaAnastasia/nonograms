@@ -12,31 +12,53 @@
   }
 }
 
-.score-btn {
+body.--light {
+  .main-btn {
+    background: #e1d4c9;
+    border: 2px solid #665f55;
+    span {
+      color: $color-text-dark;
+    }
+  }
+}
+
+body.--dark {
+  .main-btn {
+    background: #62607cc1;
+    border: 2px solid #fff;
+    span {
+      color: #fff;
+    }
+  }
+}
+
+.main-btn {
   display: flex;
   justify-content: center;
   align-items: center;
   outline: none;
-  background: #e1d4c9;
-  border: 2px solid #665f55;
   border-radius: 5px;
   padding: 5px 10px;
+  margin-bottom: 10px;
   @extend %transition;
   cursor: pointer;
   span {
     font-size: 2em;
-    color: $color-text-dark;
     @media screen and (max-width: 1300px) {
       font-size: 1.5em;
     }
   }
 }
 
-@media (hover: hover) {
-  .score-btn:hover {
-    background-color: $color-grid-background;
-    span {
-      color: #fff;
+body.--light,
+body.--dark {
+  @media (hover: hover) {
+    .main-btn:hover {
+      background-color: $color-grid-background;
+      border: 2px solid #fff;
+      span {
+        color: #fff;
+      }
     }
   }
 }

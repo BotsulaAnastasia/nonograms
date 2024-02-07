@@ -21,13 +21,94 @@
   }
 }
 
-.stopwatch-cell {
-  background-color: $color-background;
-  .stopwatch {
-    font-weight: bold;
-    width: 45px;
-    margin: auto;
+body.--light {
+  .grid {
+    color: $color-text-dark;
   }
+  .stopwatch-cell {
+    background-color: $color-background;
+  }
+  .top-cell,
+  .left-cell {
+    background-color: $color-background;
+  }
+  .main-cell__fill {
+    background-color: #fff;
+  }
+  .--positive {
+    background-color: $color-border;
+  }
+  .--negative {
+    background-color: #fff;
+  }
+  .main-cell {
+    background-color: $color-grid-background;
+    &[data-row="0"] {
+      border-top: 4px solid $color-border;
+    }
+    &[data-row="4"],
+    &[data-row="9"],
+    &[data-row="14"] {
+      border-bottom: 4px solid $color-border;
+    }
+
+    &[data-column="0"] {
+      border-left: 4px solid $color-border;
+    }
+    &[data-column="4"],
+    &[data-column="9"],
+    &[data-column="14"] {
+      border-right: 4px solid $color-border;
+    }
+  }
+}
+
+body.--dark {
+  .grid {
+    color: #fff;
+  }
+  .stopwatch-cell {
+    background-color: $color-text-dark;
+  }
+  .top-cell,
+  .left-cell {
+    background-color: $color-text-dark;
+  }
+  .main-cell__fill {
+    background-color: $color-border;
+  }
+  .--positive {
+    background-color: $color-background;
+  }
+  .--negative {
+    background-color: #62607cc1;
+  }
+  .main-cell {
+    background-color: $color-grid-background;
+    &[data-row="0"] {
+      border-top: 4px solid $color-background;
+    }
+    &[data-row="4"],
+    &[data-row="9"],
+    &[data-row="14"] {
+      border-bottom: 4px solid $color-background;
+    }
+
+    &[data-column="0"] {
+      border-left: 4px solid $color-background;
+    }
+    &[data-column="4"],
+    &[data-column="9"],
+    &[data-column="14"] {
+      border-right: 4px solid $color-background;
+    }
+  }
+}
+
+.stopwatch {
+  font-weight: bold;
+  width: 45px;
+  margin: auto;
 }
 
 .top-cell {
@@ -53,7 +134,6 @@
 
 .top-cell,
 .left-cell {
-  background-color: $color-background;
   span {
     font-weight: bold;
     &:last-child {
@@ -76,32 +156,10 @@
   flex-direction: column;
 }
 
-.main-cell {
-  background-color: $color-grid-background;
-  &[data-row="0"] {
-    border-top: 4px solid $color-border;
-  }
-  &[data-row="4"],
-  &[data-row="9"],
-  &[data-row="14"] {
-    border-bottom: 4px solid $color-border;
-  }
-
-  &[data-column="0"] {
-    border-left: 4px solid $color-border;
-  }
-  &[data-column="4"],
-  &[data-column="9"],
-  &[data-column="14"] {
-    border-right: 4px solid $color-border;
-  }
-}
-
 .main-cell__fill {
   width: clamp(20px, 3vw, 40px);
   height: clamp(20px, 3vw, 40px);
   border-radius: 15%;
-  background-color: #fff;
   cursor: pointer;
 }
 
@@ -110,7 +168,6 @@
 }
 
 .--negative {
-  background-color: #fff;
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-image: url(../assets/icons/cross.svg);

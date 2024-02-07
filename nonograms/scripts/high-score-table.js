@@ -89,18 +89,26 @@ export function createScoreButton() {
   const mainButtons = document.createElement("div");
   const scoreBtn = document.createElement("button");
   const scoreBtnText = document.createElement("span");
+  const themesBtn = document.createElement("button");
+  const themesBtnText = document.createElement("span");
 
   mainButtons.className = "main-buttons";
-  scoreBtn.className = "score-btn";
+  scoreBtn.className = "main-btn score-btn";
+  themesBtn.className = "main-btn themes-btn";
+
   scoreBtnText.innerText = "High score";
+  themesBtnText.innerText = "Dark";
 
   scoreBtn.appendChild(scoreBtnText);
   mainButtons.appendChild(scoreBtn);
+  themesBtn.appendChild(themesBtnText);
+  mainButtons.appendChild(themesBtn);
   main.appendChild(mainButtons);
 
   scoreBtn.addEventListener("click", openScoreModal);
   closeBtn.addEventListener("click", closeScoreModal);
   overlayScoreTable.addEventListener("click", closeScoreModal);
+  themesBtn.addEventListener("click", changeTheme);
 }
 
 function openScoreModal() {
@@ -113,4 +121,15 @@ function closeScoreModal() {
   overlayScoreTable.classList.remove("--active");
   scoreTable.classList.remove("--active");
   document.querySelectorAll(".score").forEach((el) => el.remove());
+}
+
+function changeTheme() {
+  const currentTheme = document.body.className;
+  if (currentTheme === "--light") {
+    document.body.className = "--dark";
+    this.firstChild.innerText = "Light";
+  } else {
+    document.body.className = "--light";
+    this.firstChild.innerText = "Dark";
+  }
 }

@@ -15,10 +15,17 @@ body {
   background-size: 50%;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-color: $color-background;
   min-height: 100vh;
   @media screen and (max-width: 800px) {
     background-size: 50em;
     background-position: center;
   }
+}
+
+body.--light {
+  background-color: $color-background;
+}
+
+body.--dark {
+  background-color: $color-text-dark;
 }
