@@ -7,6 +7,8 @@ import {
   resetGame,
   showSolution,
   randomGame,
+  saveGame,
+  continueGame,
 } from "./grid-events.js";
 import { startTimer } from "./stopwatch.js";
 import { overlayGameOver } from "./modal-windows.js";
@@ -34,4 +36,4 @@ resetGame();
 startTimer();
 showSolution();
 randomGame();
-//enterScoreInTable();
+saveGame();

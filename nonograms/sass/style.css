@@ -339,6 +339,11 @@ body {
   cursor: pointer;
 }
 
+.--desabled {
+  color: #979797;
+  cursor: default;
+}
+
 .overlay {
   position: fixed;
   top: 0;

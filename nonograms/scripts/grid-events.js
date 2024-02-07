@@ -1,7 +1,15 @@
 import { templates } from "./templates.js";
 import { generateRowHints, generateColumnHints } from "./hints.js";
 import { createGrid } from "./game-grid.js";
-import { resetTimer, pauseTimer, stopTimer } from "./stopwatch.js";
+import {
+  resetTimer,
+  pauseTimer,
+  stopTimer,
+  startTimer,
+  continueTimer,
+  seconds,
+  minutes,
+} from "./stopwatch.js";
 import { openModal } from "./modal-windows.js";
 import { saveResultsToLocalStorage } from "./high-score-table.js";
 
@@ -186,4 +194,96 @@ export function randomGame() {
     getRandomTemplate();
     newGame();
   });
+}
+
+const blackCellsInd = JSON.parse(localStorage.getItem("blackCellsIndex")) || [];
+const cellsWithCrossInd =
+  JSON.parse(localStorage.getItem("cellsWithCrossIndex")) || [];
+let savedTemplateName =
+  JSON.parse(localStorage.getItem("currentTemplateName")) || "";
+export const savedTimer =
+  JSON.parse(localStorage.getItem("currentTimerResult")) || [];
+
+export function saveGame() {
+  const saveGameBtn = document.querySelector(".btn-save-game");
+  saveGameBtn.addEventListener("click", () => {
+    savedTemplateName = currentTemplate;
+    localStorage.setItem(
+      "currentTemplateName",
+      JSON.stringify(savedTemplateName)
+    );
+
+    blackCellsInd.length = 0;
+    cellsWithCrossInd.length = 0;
+    savedTimer.length = 0;
+
+    const blackCells = document.querySelectorAll(".main-cell__fill.--positive");
+    const cellsWithCross = document.querySelectorAll(
+      ".main-cell__fill.--negative"
+    );
+
+    blackCells.forEach((el) => {
+      const columnInd = el.parentElement.getAttribute("data-column");
+      const rowInd = el.parentElement.getAttribute("data-row");
+      blackCellsInd.push([rowInd, columnInd]);
+      localStorage.setItem("blackCellsIndex", JSON.stringify(blackCellsInd));
+    });
+    cellsWithCross.forEach((el) => {
+      const columnInd = el.parentElement.getAttribute("data-column");
+      const rowInd = el.parentElement.getAttribute("data-row");
+      cellsWithCrossInd.push([rowInd, columnInd]);
+      localStorage.setItem(
+        "cellsWithCrossIndex",
+        JSON.stringify(cellsWithCrossInd)
+      );
+    });
+    pauseTimer();
+    stopTimer();
+    removeCellsEventListeners();
+
+    savedTimer.push(minutes, seconds);
+    localStorage.setItem("currentTimerResult", JSON.stringify(savedTimer));
+
+    const continueGameBtn = document.querySelector(".btn-continue-game");
+    continueGameBtn.classList.remove("--desabled");
+    continueGameBtn.addEventListener("click", continueGame);
+
+    alert(
+      'The game has been saved successfully! Click "Continue Game" to continue this game'
+    );
+  });
+}
+
+export function continueGame() {
+  const continueGameBtn = document.querySelector(".btn-continue-game");
+  continueGameBtn.classList.add("--desabled");
+
+  currentTemplate = savedTemplateName;
+  const oldGrid = document.querySelector(".grid-wrapper");
+  oldGrid.remove();
+  generateRowHints();
+  generateColumnHints();
+  createGrid();
+  fillCells();
+
+  continueTimer();
+
+  for (let i = 0; i < blackCellsInd.length; i++) {
+    const rowInd = blackCellsInd[i][0];
+    const columnInd = blackCellsInd[i][1];
+    const cell = document.querySelector(
+      `[data-row="${rowInd}"][data-column="${columnInd}"]`
+    );
+    cell.firstChild.classList.add("--positive");
+  }
+  for (let i = 0; i < cellsWithCrossInd.length; i++) {
+    const rowInd = cellsWithCrossInd[i][0];
+    const columnInd = cellsWithCrossInd[i][1];
+    const cell = document.querySelector(
+      `[data-row="${rowInd}"][data-column="${columnInd}"]`
+    );
+    cell.firstChild.classList.add("--negative");
+  }
+
+  continueGameBtn.removeEventListener("click", continueGame);
 }

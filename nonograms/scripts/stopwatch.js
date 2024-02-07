@@ -1,11 +1,12 @@
 import { modalText } from "./modal-windows.js";
+import { savedTimer } from "./grid-events.js";
 
 export const stopwatch = document.createElement("div");
 stopwatch.className = "stopwatch";
 stopwatch.textContent = "00:00";
 
-let seconds = 0;
-let minutes = 0;
+export let seconds = 0;
+export let minutes = 0;
 let interval;
 
 function updateTime() {
@@ -51,5 +52,15 @@ export function resetTimer() {
   seconds = 0;
   minutes = 0;
   stopwatch.textContent = "00:00";
+  startTimer();
+}
+
+export function continueTimer() {
+  resetTimer();
+  minutes = savedTimer[0];
+  seconds = savedTimer[1];
+  stopwatch.innerText = `${minutes.toString().padStart(2, "0")}:${seconds
+    .toString()
+    .padStart(2, "0")}`;
   startTimer();
 }

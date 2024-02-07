@@ -74,14 +74,25 @@ function createLevelsSection(features) {
 }
 
 function createButtonsSection(features) {
-  const buttonNames = ["reset-game", "save-game", "random-game", "solution"];
+  const buttonNames = [
+    "reset-game",
+    "save-game",
+    "continue-game",
+    "random-game",
+    "solution",
+  ];
 
   for (let i = 0; i < buttonNames.length; i++) {
     const button = document.createElement("li");
     const buttonDetails = document.createElement("div");
     const buttonTitle = document.createElement("span");
 
-    buttonDetails.className = `feat-details btn btn-${buttonNames[i]}`;
+    if (i === 2) {
+      buttonDetails.className = `feat-details btn btn-${buttonNames[i]} --desabled`;
+    } else {
+      buttonDetails.className = `feat-details btn btn-${buttonNames[i]}`;
+    }
+
     buttonTitle.className = "feat__name";
 
     buttonTitle.innerText = `${buttonNames[i].replace("-", " ")}`;
