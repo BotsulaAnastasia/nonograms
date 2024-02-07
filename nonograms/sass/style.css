@@ -1,4 +1,4 @@
-.sidebar, .burger-line, .burger:after, .burger:before {
+.sidebar, .score-btn, .main-buttons, .burger-line, .burger:after, .burger:before {
   transition: all 0.3s ease-out;
 }
 
@@ -89,6 +89,52 @@ body {
   transform: scale(1);
 }
 
+.main-buttons {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  margin: 25px;
+}
+@media screen and (max-width: 1670px) {
+  .main-buttons {
+    left: 78px;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .main-buttons {
+    left: 30px;
+  }
+}
+
+.score-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  background: #e1d4c9;
+  border: 2px solid #665f55;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.score-btn span {
+  font-size: 2em;
+  color: #323145;
+}
+@media screen and (max-width: 1300px) {
+  .score-btn span {
+    font-size: 1.5em;
+  }
+}
+
+@media (hover: hover) {
+  .score-btn:hover {
+    background-color: rgba(191, 64, 64, 0.7882352941);
+  }
+  .score-btn:hover span {
+    color: #fff;
+  }
+}
 .grid-wrapper {
   display: flex;
   justify-content: center;
@@ -299,7 +345,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(138, 134, 132, 0.8);
+  background: rgba(105, 105, 105, 0.8);
   display: none;
   align-items: center;
   justify-content: center;
@@ -361,4 +407,30 @@ body {
 }
 .--active {
   display: flex;
+}
+
+.overlay_score-table,
+.score-table {
+  justify-content: center;
+}
+
+.score-table__level {
+  text-align: center;
+}
+.score-table__level ul {
+  padding: 0;
+  border-top: 2px solid #323145;
+}
+.score-table__level li {
+  list-style: none;
+}
+
+.level-title {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.score {
+  font-size: 1.5em;
+  margin: 5px 0;
 }/*# sourceMappingURL=style.css.map */

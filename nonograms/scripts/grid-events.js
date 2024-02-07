@@ -3,6 +3,7 @@ import { generateRowHints, generateColumnHints } from "./hints.js";
 import { createGrid } from "./game-grid.js";
 import { resetTimer, pauseTimer, stopTimer } from "./stopwatch.js";
 import { openModal } from "./modal-windows.js";
+import { saveResultsToLocalStorage } from "./high-score-table.js";
 
 export let currentTemplate = "Camel";
 let oldTemplate = currentTemplate;
@@ -109,6 +110,7 @@ function gameOver(sol, userSol) {
     pauseTimer();
     showSolutionFunc();
     openModal();
+    saveResultsToLocalStorage();
   }
 }
 

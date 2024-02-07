@@ -1,0 +1,42 @@
+.main-buttons {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  margin: 25px;
+  @extend %transition;
+  @media screen and (max-width: 1670px) {
+    left: 78px;
+  }
+  @media screen and (max-width: 1300px) {
+    left: 30px;
+  }
+}
+
+.score-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  background: #e1d4c9;
+  border: 2px solid #665f55;
+  border-radius: 5px;
+  padding: 5px 10px;
+  @extend %transition;
+  cursor: pointer;
+  span {
+    font-size: 2em;
+    color: $color-text-dark;
+    @media screen and (max-width: 1300px) {
+      font-size: 1.5em;
+    }
+  }
+}
+
+@media (hover: hover) {
+  .score-btn:hover {
+    background-color: $color-grid-background;
+    span {
+      color: #fff;
+    }
+  }
+}
