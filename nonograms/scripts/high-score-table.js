@@ -1,6 +1,7 @@
 import { currentTemplate } from "./grid-events.js";
 import { templates } from "./templates.js";
 import { main } from "./script.js";
+import { sounds } from "./grid-events.js";
 
 let results = JSON.parse(localStorage.getItem("yourNonogramGameResults")) || [];
 
@@ -91,10 +92,13 @@ export function createScoreButton() {
   const scoreBtnText = document.createElement("span");
   const themesBtn = document.createElement("button");
   const themesBtnText = document.createElement("span");
+  const volumeBtn = document.createElement("button");
+  const volumeBtnText = document.createElement("span");
 
   mainButtons.className = "main-buttons";
   scoreBtn.className = "main-btn score-btn";
   themesBtn.className = "main-btn themes-btn";
+  volumeBtn.className = "main-btn volume-btn";
 
   scoreBtnText.innerText = "High score";
   themesBtnText.innerText = "Dark";
@@ -103,12 +107,16 @@ export function createScoreButton() {
   mainButtons.appendChild(scoreBtn);
   themesBtn.appendChild(themesBtnText);
   mainButtons.appendChild(themesBtn);
+  volumeBtn.appendChild(volumeBtnText);
+  mainButtons.appendChild(volumeBtn);
   main.appendChild(mainButtons);
 
   scoreBtn.addEventListener("click", openScoreModal);
   closeBtn.addEventListener("click", closeScoreModal);
   overlayScoreTable.addEventListener("click", closeScoreModal);
   themesBtn.addEventListener("click", changeTheme);
+  volumeBtn.addEventListener("click", muteVolume);
+  addVolumeIco();
 }
 
 function openScoreModal() {
@@ -132,4 +140,40 @@ function changeTheme() {
     document.body.className = "--light";
     this.firstChild.innerText = "Dark";
   }
+  addVolumeIco();
+}
+
+function muteVolume() {
+  sounds.forEach((audio) => {
+    audio.muted = !audio.muted;
+  });
+  addVolumeIco();
+}
+
+function addVolumeDarkIco() {
+  const volumeBtn = document.querySelector(".volume-btn");
+  sounds.forEach((audio) => {
+    if (audio.muted) {
+      volumeBtn.firstChild.style.backgroundImage = `url("./assets/icons/volume-mute-dark.svg")`;
+    } else {
+      volumeBtn.firstChild.style.backgroundImage = `url("./assets/icons/volume-up-dark.svg")`;
+    }
+  });
+}
+
+function addVolumeLightIco() {
+  const volumeBtn = document.querySelector(".volume-btn");
+  sounds.forEach((audio) => {
+    if (audio.muted) {
+      volumeBtn.firstChild.style.backgroundImage = `url("./assets/icons/volume-mute-light.svg")`;
+    } else {
+      volumeBtn.firstChild.style.backgroundImage = `url("./assets/icons/volume-up-light.svg")`;
+    }
+  });
+}
+
+function addVolumeIco() {
+  const currentTheme = document.body.className;
+  if (currentTheme === "--light") addVolumeDarkIco();
+  else addVolumeLightIco();
 }

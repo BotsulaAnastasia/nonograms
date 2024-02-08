@@ -76,18 +76,26 @@ function fillCellsContextMenu() {
   }
 }
 
+const soundOfPaintCell = new Audio("./assets/sounds/paint-black.mp3");
+const soundOfCrossOut = new Audio("./assets/sounds/cross-out.mp3");
+const soundOfClearCell = new Audio("./assets/sounds/clear-cell.mp3");
+const soundOfWinGame = new Audio("./assets/sounds/game-over.mp3");
+export const sounds = [
+  soundOfPaintCell,
+  soundOfCrossOut,
+  soundOfClearCell,
+  soundOfWinGame,
+];
+
 function paintBlackSound() {
-  const soundOfPaintCell = new Audio("./assets/sounds/paint-black.mp3");
   soundOfPaintCell.play();
 }
 
 function crossOutSound() {
-  const soundOfCrossOut = new Audio("./assets/sounds/cross-out.mp3");
   soundOfCrossOut.play();
 }
 
 function clearCellSound() {
-  const soundOfClearCell = new Audio("./assets/sounds/clear-cell.mp3");
   soundOfClearCell.play();
 }
 
@@ -123,7 +131,6 @@ function gameOver(sol, userSol) {
 }
 
 function gameOverSound() {
-  const soundOfWinGame = new Audio("./assets/sounds/game-over.mp3");
   soundOfWinGame.play();
 }
 

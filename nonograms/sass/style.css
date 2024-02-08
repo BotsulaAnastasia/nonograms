@@ -170,6 +170,22 @@ body.--dark .main-btn span {
   }
 }
 
+.volume-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  padding: 0;
+}
+.volume-btn span {
+  width: 35px;
+  height: 35px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .grid-wrapper {
   display: flex;
   justify-content: center;
