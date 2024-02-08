@@ -6,10 +6,20 @@
   @extend %transition;
   @media screen and (max-width: 1670px) {
     left: 78px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    .main-btn {
+      margin: 0;
+    }
   }
   @media screen and (max-width: 1300px) {
     left: 30px;
   }
+}
+
+.--open-sidebar__buttons {
+  left: 260px;
 }
 
 body.--light {

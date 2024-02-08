@@ -123,8 +123,11 @@ function openBurger(burger) {
   burger.addEventListener("click", () => {
     const sidebar = document.querySelector(".sidebar");
     const sidebarFeat = document.querySelector(".sidebar__features");
+    const mainButtons = document.querySelector(".main-buttons");
+
     sidebar.classList.toggle("--open-sidebar");
     sidebarFeat.classList.toggle("--open-sidebar__features");
+    mainButtons.classList.toggle("--open-sidebar__buttons");
     burger.classList.toggle("--open-burger");
 
     closeBurger(burger);
