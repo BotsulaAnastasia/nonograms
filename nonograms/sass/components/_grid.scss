@@ -61,6 +61,22 @@ body.--light {
       border-right: 4px solid $color-border;
     }
   }
+  tr {
+    &[data-row="4"],
+    &[data-row="9"],
+    &[data-row="14"] {
+      .left-cell {
+        border-bottom: 4px solid $color-border;
+      }
+    }
+  }
+  .top-cell {
+    &[data-column="4"],
+    &[data-column="9"],
+    &[data-column="14"] {
+      border-right: 4px solid $color-border;
+    }
+  }
 }
 
 body.--dark {
@@ -97,6 +113,22 @@ body.--dark {
     &[data-column="0"] {
       border-left: 4px solid $color-background;
     }
+    &[data-column="4"],
+    &[data-column="9"],
+    &[data-column="14"] {
+      border-right: 4px solid $color-background;
+    }
+  }
+  tr {
+    &[data-row="4"],
+    &[data-row="9"],
+    &[data-row="14"] {
+      .left-cell {
+        border-bottom: 4px solid $color-background;
+      }
+    }
+  }
+  .top-cell {
     &[data-column="4"],
     &[data-column="9"],
     &[data-column="14"] {
