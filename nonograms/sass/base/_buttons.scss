@@ -1,0 +1,90 @@
+.main-buttons {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  margin: 25px;
+  @extend %transition;
+  @media screen and (max-width: 1670px) {
+    left: 78px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    .main-btn {
+      margin: 0;
+    }
+  }
+  @media screen and (max-width: 1300px) {
+    left: 30px;
+  }
+}
+
+.--open-sidebar__buttons {
+  left: 260px;
+}
+
+body.--light {
+  .main-btn {
+    background: #e1d4c9;
+    border: 2px solid #665f55;
+    span {
+      color: $color-text-dark;
+    }
+  }
+}
+
+body.--dark {
+  .main-btn {
+    background: #62607cc1;
+    border: 2px solid #fff;
+    span {
+      color: #fff;
+    }
+  }
+}
+
+.main-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  @extend %transition;
+  cursor: pointer;
+  span {
+    font-size: 2em;
+    @media screen and (max-width: 1300px) {
+      font-size: 1.5em;
+    }
+  }
+}
+
+body.--light,
+body.--dark {
+  @media (hover: hover) {
+    .main-btn:hover {
+      background-color: $color-grid-background;
+      border: 2px solid #fff;
+      span {
+        color: #fff;
+      }
+    }
+  }
+}
+
+.volume-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  span {
+    width: 35px;
+    height: 35px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
